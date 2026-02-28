@@ -5,7 +5,7 @@ function createServer() {
   return http.createServer((req, res) => {
     const urlParams = req.url.split('?');
     const text = urlParams[0].slice(1);
-    const queryString = urlParams[1];
+    const queryString = urlParams[1] || '';
 
     const params = new URLSearchParams(queryString);
     const toCase = params.get('toCase');
@@ -50,7 +50,7 @@ function createServer() {
     const result = convertToCase(text, toCase);
 
     res.statusCode = 200;
-    res.statusMessage = 'ok';
+    res.statusMessage = 'OK';
     res.setHeader('Content-Type', 'application/json');
 
     res.end(
